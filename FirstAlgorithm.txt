@@ -1,0 +1,78 @@
+        for (int i = 0, y = yStart, v = 1; i < line; i++, y += 2 * step) {
+            for (int j = 0, x = xStart; j < line; j++, v++, x += 2 * step) {
+                gr.fillRect(x, y, step, step);
+
+                PointKey pk = tree.get(v - 1);
+                if (v != 1 && pk.p == v - 1) {
+                    gr.fillRect(x - step, y, step, step);
+                }
+                if (pk.p == v + 1) {
+                    gr.fillRect(x + step, y, step, step);
+                }
+                if (pk.p == v + line) {
+                    gr.fillRect(x, y + step, step, step);
+                }
+                if (pk.p == v - line) {
+                    gr.fillRect(x, y - step , step, step);
+                }
+            }
+        }
+
+
+
+
+
+
+if (v != 1 && pk.p == v - 1) {
+                    drawSquare(x - step, y, x, y, gr);
+                }
+                if (pk.p == v + 1) {
+                    drawSquare(x + step, y, x, y, gr);
+                }
+                if (pk.p == v + line) {
+                    drawSquare(x, y + step, x, y, gr);
+                }
+                if (pk.p == v - line) {
+                    drawSquare(x, y - step , x, y, gr);
+                }
+
+
+
+
+private void getExit(int x, int y, int i, int j, Graphics gr) {
+        if (i == 0) {
+            xEx = x - (step * 3 / 4);
+            yEx = (step * 3 / 4);
+            wEx = 2 * (step / 4);
+            hEx = step;
+        }
+        if (j == 0) {
+            xEx = (step * 3 / 4);
+            yEx = x - (step * 3 / 4);
+            wEx = step;
+            hEx = 2 * (step / 4);
+        }
+        if (i == n - 1) {
+            xEx = x - (step * 3 / 4);
+            yEx = y - (step / 4);
+            wEx = 2 * (step / 4);
+            hEx = step;
+        }
+        if (j == n - 1) {
+            xEx = x - (step / 4);
+            yEx = y - (step / 4);
+            wEx = step;
+            hEx = 2 * (step / 4);
+        }
+    }
+
+
+
+if (!changeExit && (i == 0 || j == 0) && (int) (Math.random() * 100) > p) {
+                    getExit(x, y, i, j, gr);
+                    changeExit = true;
+                }
+                if (changeExit) {
+                    gr.fillRect(xEx, yEx, wEx, hEx);
+                }
+}
